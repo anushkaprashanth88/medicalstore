@@ -1,0 +1,51 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+{% block title %}
+
+{% endblock %}
+{% block background %}
+{% endblock %}
+{% block body %}
+<html>
+<head>
+    <style>
+
+
+</style>
+</head>
+<body>
+<link rel="stylesheet" href="{% static 'myapp/style.css' %}">
+<Left>
+    <div class="logimg" style="background-image:url(/static/myapp/images/img_1.png)">
+
+<table align="Left" style="width: 50%;" >
+    <div class="container" ><br>
+         <h2><font color="#366092">LOGIN</font></h2>
+
+
+        <form role="form" name="frm" action="login1"  method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="uname">User Name</label>
+                <input class="form-control" type="text" id="uname" name="uname">
+            </div>
+             <div class="form-group">
+                 <label for="uname">Password</label>
+                 <input class="form-control" type="password" id="passwd" name="passwd">
+             </div>
+            <button type="submit" class="btn btn-info" id="bt" name="bt">Login</button>
+            <button type="reset" class="btn btn-info" id="rt" name="rt">Reset</button>
+
+            <br/>
+            <br>
+        <a href="registration" class="btn btn-info"> New User</a>
+        </form>
+    </div>
+
+
+    {{msg}}
+    </table>
+    </div>
+</Left>
+
+{% endblock %}

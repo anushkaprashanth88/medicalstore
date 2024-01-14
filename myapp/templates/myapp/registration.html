@@ -1,0 +1,137 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+{% block title %}{% endblock %}
+{% block background %}{% endblock %}
+<link rel="stylesheet" href="{% static 'myapp/style.css' %}">
+
+{% block body %}
+<html>
+<head>
+	<style>
+
+</style>
+</head>
+<body>
+<center>
+	<div class="regimg" style="background-image:url(/static/myapp/images/bg_1.jpg)">
+	<br><br><br>
+    <h2>User Registration</h2>
+	<div class="container">
+    <form role="form" name="form1" action='registration' method="post">
+        {% csrf_token %}
+
+
+        <div class="form-group"  >
+			<label for="fname">Name</label>
+	        <input class="form-control" type="text"  id="fname" name="fname" placeholder="First name" required="required" onkeypress="return allowOnlyLetters(event,this);">
+			<input class="form-control" type="text"  id="lname" name="lname" placeholder="Last name" required="required" onkeypress="return allowOnlyLetters(event,this);">
+		</div>
+
+	    <div class="form-group">
+			<label for="addr">Address</label>
+	        <input class="form-control" type="text"  id="addr" name="addr" placeholder="place" >
+            <input type="text"  class="form-control" id="pin" name="pin" placeholder="pin" >
+		</div>
+
+		<div class="form-group">
+			<label for="contact">country</label>
+	        <input type="text"  class="form-control" id="country" name="country" placeholder="country" >
+		</div>
+
+
+	    <div class="form-group">
+			<label for="contact">Contact</label>
+	        <input type="tel"  class="form-control" id="contact" name="contact" onkeypress="return isNumberKey(event,this)" onkeypress="phonenumber(document.form1.contact)" maxlength="10" minlength="10" placeholder="Enter contact" >
+		</div>
+		<div class="form-group">
+			<label for="email">Email</label>
+	       <input type="email" onblur="ValidateEmail(document.form1.email)" class="form-control" id="email" name="email" placeholder="Enter email id">
+		</div>
+        <div class="form-group">
+			<label for="pwd">password</label>
+	        <input type="password" class="form-control" id="pwd" name="pwd"></td>
+		</div>
+		<div class="form-group">
+			<label for="pwd">confirm password</label>
+	        <input type="password" class="form-control" id="pwd1" name="pwd"></td>
+		</div>
+	    <button type="submit" class="btn btn-info" id="bt" name="bt">Register</button>
+        <button type="reset" class="btn btn-info" id="rt" name="rt">Reset</button>
+	    </table><br><br>
+		Already have an account?<a href='login1'>Login</a>.
+    </form>
+		<h2> {{msg}} </h2>
+	</div>
+	</div>
+</center>
+</body>
+</html>
+<script>
+	function phonenumber(inputtxt)
+{
+  var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+  if((inputtxt.value.match(phoneno))
+        {
+      return true;
+        }
+      else
+        {
+        alert("message");
+        return false;
+        }
+}
+	function successfull(inputtxt){
+		//alert('here')
+        	alert("Invalid phone Number");
+        	return false;
+        }
+	}
+</script>
+
+
+
+<script language="Javascript" type="text/javascript">
+
+function allowOnlyLetters(e, t)
+{
+   if (window.event)
+   {
+      var charCode = window.event.keyCode;
+   }
+   else if (e)
+   {
+      var charCode = e.which;
+   }
+   else { return true; }
+   if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123))
+       return true;
+   else
+   {
+      alert("Please enter only alphabets");
+      return false;
+   }
+}
+function isNumberKey(evt, obj) {
+
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            var value = obj.value;
+            var dotcontains = value.indexOf(".") != -1;
+            if (dotcontains)
+                if (charCode == 46) return false;
+            if (charCode == 46) return true;
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+            return true;
+        }
+
+function ValidateEmail(mail){
+    	//  alert("You have entered an invalid email address!")
+    	if (/^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/.test(mail.value)){
+    		return (true);
+    	}
+    	alert("You have entered an invalid email address!");
+    	return (false);
+	}
+
+</script>
+{% endblock %}
